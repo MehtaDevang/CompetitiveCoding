@@ -9,13 +9,12 @@ def bubbleSort(arr):
         swapped = False
         for j in range(n-1-i):
             if arr[j] >= arr[j+1]:
-                swapped = False
+                swapped = True
                 arr[j], arr[j+1] = arr[j+1], arr[j]
             
         if not swapped:
             break
     return arr
-
 
 
 """
@@ -93,3 +92,37 @@ def selectionSort(arr):
         arr[i], arr[min_index] = arr[min_index], arr[i]
 
     return arr 
+
+
+"""
+Insertion Sort
+"""
+
+def insertionSort(arr):
+    n = len(arr)
+
+    for i in range(1, n):
+        key = arr[i]
+
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j+1] = arr[j]           # shifting elements
+            j-=1
+        arr[j+1] = key
+    
+    return arr
+
+
+def get_subsets(lst):
+    """
+        function for generate all the subsets of a list
+        [1, 2, 3]
+        output: [[], [1], [2], [3], [1,2], [1,3], [2,3], [1,2,3]]
+    """
+
+    subset = []
+    n = len(lst)
+
+    for i in range(2**n):
+        subsets = [lst[j] for j in range(n) if (i & (1<<j))]
+        subsets.append(subset)
